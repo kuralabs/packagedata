@@ -2,6 +2,7 @@
 __pycache__
 
 # Packages
+*.egg-info
 dist/*
 build/*
 
