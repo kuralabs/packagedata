@@ -49,10 +49,11 @@ except ImportError:
     import importlib_metadata  # backport
 
 
-def read_text(resource, encoding='utf-8'):
+def read_text(package, resource, encoding='utf-8'):
     """
     Read a text resource from the package.
 
+    :param str package: The package name.
     :param str resource: The resource path.
     :param str encoding: The text encoding to use.
 
@@ -71,16 +72,21 @@ def read_text(resource, encoding='utf-8'):
         #
         # With:
         import packagedata as pkgdata
-        text = pkgdata.read_text('data/config.toml')
+        text = pkgdata.read_text(
+            __package__,
+            'data/config.toml',
+            encoding='utf-8'
+        )
     """
-    ref = importlib_resources.files(__package__).joinpath(resource)
+    ref = importlib_resources.files(package).joinpath(resource)
     return ref.read_text(encoding=encoding)
 
 
-def read_bytes(resource):
+def read_bytes(package, resource):
     """
     Read a binary resource from the package.
 
+    :param str package: The package name.
     :param str resource: The resource path.
 
     :return: The contents of the resource as bytes.
@@ -97,17 +103,18 @@ def read_bytes(resource):
         # )
         # With:
         import packagedata as pkgdata
-        data = pkgdata.read_bytes('data/mybinaryfile.bin')
+        data = pkgdata.read_bytes(__package__, 'data/mybinaryfile.bin')
     """
-    ref = importlib_resources.files(__package__).joinpath(resource)
+    ref = importlib_resources.files(package).joinpath(resource)
     return ref.read_bytes()
 
 
 @contextmanager
-def as_path(resource):
+def as_path(package, resource):
     """
     Context manager that yields a pathlib.Path to a resource file.
 
+    :param str package: The package name.
     :param str resource: The resource path.
 
     :yield: A pathlib.Path to the resource file.
@@ -125,10 +132,10 @@ def as_path(resource):
         #
         # With:
         import packagedata as pkgdata
-        with pkgdata.as_path('data/myresource') as path:
+        with pkgdata.as_path(__package__, 'data/myresource') as path:
             do_something_with(path)
     """
-    ref = importlib_resources.files(__package__).joinpath(resource)
+    ref = importlib_resources.files(package).joinpath(resource)
     with importlib_resources.as_file(ref) as path:
         yield path
 

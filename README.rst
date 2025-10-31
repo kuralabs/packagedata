@@ -56,7 +56,7 @@ To:
 .. code-block:: python
 
    import packagedata as pkgdata
-   text = pkgdata.read_text('data/README.txt', encoding='utf-8')
+   text = pkgdata.read_text(__package__, 'data/README.txt', encoding='utf-8')
 
 Then, eventually, when you can, change it to:
 
@@ -81,7 +81,7 @@ To:
 .. code-block:: python
 
    import packagedata as pkgdata
-   data = pkgdata.read_bytes('assets/icon.ico')
+   data = pkgdata.read_bytes(__package__, 'assets/icon.ico')
 
 Then, eventually, when you can, change it to:
 
@@ -110,7 +110,7 @@ To:
 .. code-block:: python
 
    import packagedata as pkgdata
-   with pkgdata.as_path('templates') as templates_path:
+   with pkgdata.as_path(__package__, 'templates') as templates_path:
        for filepath in templates_path.iterdir():
            print(filepath)
 
