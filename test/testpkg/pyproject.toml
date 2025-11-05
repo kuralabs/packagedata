@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "packagedata"
-version = "1.0.0"
-description = "A custom pkg_resources to importlib.resources/metadata migration helper."
+name = "testpkg"
+version = "0.1.0"
+description = "A test package"
 authors = [
     { name="KuraLabs S.R.L", email="info@kuralabs.io" }
 ]
@@ -26,12 +26,13 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
 ]
-
 requires-python = ">=3.8"
-dependencies = [
-    "importlib-resources; python_version < '3.9'",
-    "importlib-metadata; python_version < '3.9'",
-]
+dependencies = []
 
-[tool.setuptools]
-py-modules = ["packagedata"]
+[tool.setuptools.package-data]
+"testpkg.data" = ["**/*"]
+
+# Note the quotes around testpkg.plugins in order to escape the dot .
+[project.entry-points."testpkg.plugins"]
+plugin1 = "testpkg:plugin1"
+plugin2 = "testpkg:plugin2"
