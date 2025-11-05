@@ -39,14 +39,14 @@ See https://setuptools.pypa.io/en/latest/pkg_resources.html.
 from contextlib import contextmanager
 
 try:
-    import importlib.resources as importlib_resources
+    import importlib_resources  # Prioritize backport
 except ImportError:
-    import importlib_resources  # backport
+    import importlib.resources as importlib_resources
 
 try:
-    import importlib.metadata as importlib_metadata
+    import importlib_metadata  # Prioritize backport
 except ImportError:
-    import importlib_metadata  # backport
+    import importlib.metadata as importlib_metadata
 
 
 def read_text(package, resource, encoding='utf-8'):
