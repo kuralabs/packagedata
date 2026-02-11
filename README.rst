@@ -12,18 +12,19 @@ About
 from the deprecated ``pkg_resources`` API to the modern ``importlib.resources``
 and ``importlib.metadata`` APIs.
 
-The ``pkg_resources`` package is deprecated and scheduled for removal on
-2025-11-30. This library provides a replacement specially tailored for
-maintainers of packages that fall in an impossible position of needing to
-support both older Python versions while migrating to the new APIs.
+The ``pkg_resources`` package was deprecated in setuptools 67.5.0 (05 Mar 2023)
+and removed on setuptools 82.0.0 (8 Feb 2026). This library provides a
+replacement specially tailored for maintainers of packages that fall in an
+impossible position of needing to support both older Python versions while
+migrating to the new APIs.
 
 If you are maintaining for Python >=3.9, please use the standard library
 ``importlib.resources``. If you need entry points and maintaining for
 Python >=3.12, please use ``importlib.metadata`` directly. If you don't fall
 in those categories this library may help you migrate and maintain your code.
 
-So, to reiterate: if you are maintaining for a modern Python version, this
-package is not for you.
+So, to reiterate: if you are maintaining for a modern Python version (>=3.7),
+this package is not for you.
 
 Installation
 ============
@@ -161,7 +162,7 @@ The ``packagedata.entry_points()`` function handles API differences between
 Python versions:
 
 - **Python 3.10+**: Uses the new ``EntryPoints.select()`` method.
-- **Python 3.8-3.9**: Uses the legacy dict-like interface.
+- **Python 3.7-3.9**: Uses the legacy dict-like interface.
 
 So while no "selectable" entry points are exposed, the same code works across
 all supported Python versions and mimics the ``pkg_resources`` behavior.
