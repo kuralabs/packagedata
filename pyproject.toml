@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "packagedata"
-version = "1.2.0"
+version = "1.3.0"
 description = "A custom pkg_resources to importlib.resources/metadata migration helper."
 authors = [
     { name="KuraLabs S.R.L", email="info@kuralabs.io" }
@@ -33,6 +33,9 @@ dependencies = [
     "importlib-resources; python_version < '3.9'",
     "importlib-metadata; python_version < '3.9'",
 ]
+
+[project.urls]
+Homepage = "https://github.com/kuralabs/packagedata/"
 
 [tool.setuptools]
 py-modules = ["packagedata"]
